@@ -22,7 +22,18 @@ public class Adder {
         if (object == null)
             return BigDecimal.ZERO;
 
-        return BigDecimal.valueOf((int)object);
+        if (object instanceof Integer)
+            return toBigDecimal((int) object);
+
+        return toBigDecimal((double)object);
+    }
+
+    private BigDecimal toBigDecimal(int i) {
+        return BigDecimal.valueOf(i);
+    }
+
+    private BigDecimal toBigDecimal(double d) {
+        return BigDecimal.valueOf(d).stripTrailingZeros();
     }
 
 }

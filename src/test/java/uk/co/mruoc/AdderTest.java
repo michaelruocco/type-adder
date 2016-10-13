@@ -50,4 +50,13 @@ public class AdderTest {
         assertThat(result).isEqualTo(BigDecimal.valueOf(25));
     }
 
+    @Test
+    public void shouldReturnValueOfDoublesAndInegersAsBigDecimal() {
+        List<Object> objects = Arrays.asList(10, null, 15d);
+
+        BigDecimal result = adder.add(objects);
+
+        assertThat(result).isEqualTo(BigDecimal.valueOf(25));
+    }
+
 }
