@@ -32,4 +32,13 @@ public class AdderTest {
         assertThat(result).isEqualTo(BigDecimal.TEN);
     }
 
+    @Test
+    public void shouldReturnValueOfMultipleIntegersAsBigDecimal() {
+        List<Object> objects = Arrays.asList(10, 5, 15);
+
+        BigDecimal result = adder.add(objects);
+
+        assertThat(result).isEqualTo(BigDecimal.valueOf(30));
+    }
+
 }
