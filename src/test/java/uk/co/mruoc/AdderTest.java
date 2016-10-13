@@ -41,4 +41,13 @@ public class AdderTest {
         assertThat(result).isEqualTo(BigDecimal.valueOf(30));
     }
 
+    @Test
+    public void shouldHandleNullAndTreatItAsZero() {
+        List<Object> objects = Arrays.asList(10, null, 15);
+
+        BigDecimal result = adder.add(objects);
+
+        assertThat(result).isEqualTo(BigDecimal.valueOf(25));
+    }
+
 }

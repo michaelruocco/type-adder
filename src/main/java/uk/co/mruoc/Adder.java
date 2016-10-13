@@ -14,11 +14,14 @@ public class Adder {
 
         for (Object object : objects)
             result = result.add(toBigDecimal(object));
-        
+
         return result;
     }
 
     private BigDecimal toBigDecimal(Object object) {
+        if (object == null)
+            return BigDecimal.ZERO;
+
         return BigDecimal.valueOf((int)object);
     }
 
