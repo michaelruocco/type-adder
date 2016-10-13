@@ -51,8 +51,26 @@ public class AdderTest {
     }
 
     @Test
-    public void shouldReturnValueOfDoublesAndInegersAsBigDecimal() {
+    public void shouldReturnValueOfDoublesAndIntegersAsBigDecimal() {
         List<Object> objects = Arrays.asList(10, null, 15d);
+
+        BigDecimal result = adder.add(objects);
+
+        assertThat(result).isEqualTo(BigDecimal.valueOf(25));
+    }
+
+    @Test
+    public void shouldReturnValueOfDoublesIntegersAndStringsAsBigDecimal() {
+        List<Object> objects = Arrays.asList(10, null, 15d, "15");
+
+        BigDecimal result = adder.add(objects);
+
+        assertThat(result).isEqualTo(BigDecimal.valueOf(40));
+    }
+
+    @Test
+    public void shouldHandleNonNumericStringAndTreatItAsZero() {
+        List<Object> objects = Arrays.asList(10, null, 15d, "test");
 
         BigDecimal result = adder.add(objects);
 

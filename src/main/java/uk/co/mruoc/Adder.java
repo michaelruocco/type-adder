@@ -3,6 +3,8 @@ package uk.co.mruoc;
 import java.math.BigDecimal;
 import java.util.List;
 
+import org.apache.commons.lang3.math.NumberUtils;
+
 
 public class Adder {
 
@@ -25,15 +27,28 @@ public class Adder {
         if (object instanceof Integer)
             return toBigDecimal((int) object);
 
-        return toBigDecimal((double)object);
+        if (object instanceof Double)
+            return toBigDecimal((double)object);
+
+        return toBigDecimal(object.toString());
     }
 
     private BigDecimal toBigDecimal(int i) {
-        return BigDecimal.valueOf(i);
+        return format(BigDecimal.valueOf(i));
     }
 
     private BigDecimal toBigDecimal(double d) {
-        return BigDecimal.valueOf(d).stripTrailingZeros();
+        return format(BigDecimal.valueOf(d).stripTrailingZeros());
+    }
+
+    private BigDecimal toBigDecimal(String s) {
+        if (NumberUtils.isNumber(s))
+            return format(BigDecimal.valueOf(Double.parseDouble(s)));
+        return BigDecimal.ZERO;
+    }
+
+    private BigDecimal format(BigDecimal d) {
+        return d.stripTrailingZeros();
     }
 
 }
