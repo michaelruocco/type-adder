@@ -1,6 +1,7 @@
 package uk.co.mruoc;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.List;
 
 import org.apache.commons.lang3.math.NumberUtils;
@@ -8,7 +9,11 @@ import org.apache.commons.lang3.math.NumberUtils;
 
 public class Adder {
 
-    public BigDecimal add(List<Object> objects) {
+    public BigDecimal add(Object... objects) {
+        return add(Arrays.asList(objects));
+    }
+
+    private BigDecimal add(List<Object> objects) {
         BigDecimal result = BigDecimal.ZERO;
 
         if (objects.isEmpty())
