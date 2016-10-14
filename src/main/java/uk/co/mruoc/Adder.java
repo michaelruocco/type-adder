@@ -24,21 +24,17 @@ public class Adder {
         if (object == null)
             return BigDecimal.ZERO;
 
-        if (object instanceof Integer)
-            return toBigDecimal((int) object);
+        if (object instanceof Number)
+            return toBigDecimal((Number) object);
 
-        if (object instanceof Double)
-            return toBigDecimal((double)object);
+        if (object instanceof String)
+            return toBigDecimal((String)object);
 
-        return toBigDecimal(object.toString());
+        return BigDecimal.ZERO;
     }
 
-    private BigDecimal toBigDecimal(int i) {
-        return format(BigDecimal.valueOf(i));
-    }
-
-    private BigDecimal toBigDecimal(double d) {
-        return format(BigDecimal.valueOf(d).stripTrailingZeros());
+    private BigDecimal toBigDecimal(Number number) {
+        return format(BigDecimal.valueOf(number.doubleValue()));
     }
 
     private BigDecimal toBigDecimal(String s) {
